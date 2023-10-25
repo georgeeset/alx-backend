@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 """
-Least Recently Used caching
+Most Recently Used caching
 """
 from collections import OrderedDict
+
 from base_caching import BaseCaching
 
 
-class LRUCache(BaseCaching):
+class MRUCache(BaseCaching):
     """
     inherits from BaseCaching and is a caching system:
-    Implements Least Recently Used principle
+    Implements Most Recently Used principle
     """
     def __init__(self):
         """Initializes the cache.
         """
         super().__init__()
-        # ordered dictionary. remmbers insertion order
         self.cache_data = OrderedDict()
 
     def put(self, key, item):
@@ -28,8 +28,8 @@ class LRUCache(BaseCaching):
             return
         if key not in self.cache_data:
             if len(self.cache_data) + 1 > self.MAX_ITEMS:
-                lru_key, _ = self.cache_data.popitem(True)
-                print("DISCARD:", lru_key)
+                mru_key, _ = self.cache_data.popitem(False)
+                print("DISCARD:", mru_key)
             self.cache_data[key] = item
             self.cache_data.move_to_end(key, last=False)
         else:
