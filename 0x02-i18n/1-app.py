@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """ Route module for the API """
 from flask import Flask, render_template
+from flask_babel import Babel
+
 app = Flask(__name__)
 babel = Babel(app)
 
@@ -16,12 +18,13 @@ class Config(object):
 
 app.config.from_object('1-app.Config')
 
+
 @app.route('/', methods=['GET'], strict_slashes=False)
 def index():
     """
     flask index page
     """
-    return render_template('0-index.html')
+    return render_template('1-index.html')
 
 
 if __name__ == "__main__":
