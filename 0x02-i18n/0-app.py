@@ -1,9 +1,8 @@
 from flask import Flask, render_template
 app = Flask(__name__)
-strict_slashes = False
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET'], strict_slashes=False)
 def index():
     """
     flask index page
