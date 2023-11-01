@@ -32,12 +32,13 @@ def get_locale() -> str:
     else:
         return request.accept_languages.best_match(app.config['LANGUAGES'])
 
+
 @app.route('/', methods=['GET'], strict_slashes=False)
 def index():
     """
     flask index page
     """
-    return render_template('1-index.html')
+    return render_template('4-index.html')
 
 
 if __name__ == "__main__":
