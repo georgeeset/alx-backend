@@ -24,13 +24,15 @@ def get_locale() -> str:
     """ Determines best match for supported languages
     check if user spcified language
     """
-    locale_request = request.args.get('locale')
-    if locale_request:
-        locale = locale_request
-        if locale in app.config['LANGUAGES']:
-            return locale
-    else:
-        return request.accept_languages.best_match(app.config['LANGUAGES'])
+    locale_data = request.query_string.decode('utf-8').split('&')
+    locale_split = dict(map(
+        lambda x: (x if '=' in x else '{}='.format(x)).split('='),
+        locale_data,
+    ))
+    if 'locale' in locale_split:
+        if locale_split['locale'] in app.config["LANGUAGES"]:
+            return locale_split['locale']
+    return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
