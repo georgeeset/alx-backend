@@ -30,9 +30,8 @@ app.config.from_object(Config)
 
 @app.route('/', methods=['GET'], strict_slashes=False)
 def index() -> str:
-    """ GET /
-    Return:
-      - 5-index.html
+    """
+    flask index page
     """
     return render_template('5-index.html')
 
@@ -47,7 +46,7 @@ def get_locale():
 
 
 def get_user() -> Union[dict, None]:
-    """ Returns user dict if ID can be found """
+    """ Returns user dict if ID is present """
     login_as = request.args.get("login_as", False)
     if login_as:
         user = users.get(int(login_as), False)
