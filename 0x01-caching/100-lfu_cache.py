@@ -51,7 +51,7 @@ class LFUCache(BaseCaching):
                 self.usage_frequency.pop()
                 print("DISCARD:", item_key)
             self.cache_data[key] = item
-            ins_index = len(self.usage_frequency)   
+            ins_index = len(self.usage_frequency)
             for i, usage in enumerate(self.usage_frequency):
                 if usage[1] == 0:
                     ins_index = i
